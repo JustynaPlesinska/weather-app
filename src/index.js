@@ -37,7 +37,7 @@ function showTemperature(response) {
   let sundown = response.data.sys.sunset;
   let searchCity = document.querySelector("#city-name");
   searchCity.innerHTML = `${city}`;
-  let currentTemperature = document.querySelector("h2");
+  let currentTemperature = document.querySelector("#temperature");
   currentTemperature.innerHTML = `${temperature}ºC`;
   let describeWeather = document.querySelector("#weather-desc");
   describeWeather.innerHTML = `${tempDescription}`;
