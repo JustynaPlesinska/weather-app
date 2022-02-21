@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather app</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="current-location">
+        <h1>
+         <img src="images/location.svg" class="bigger-img" id="search-image" alt="location" />
+         <span id="city-name">
+         </span>
+        </h1>
+        <br />
+        <img class="main-weather" src="images/sun.svg" alt="sun" />
+        <br />
+        <br />
+        <h2>
+        </h2>
+        <span> <a  href="#"><img id="button-f" src="images/f.svg"/></a> </span>
+        <span> <a" href="#"><img id="button-c" src="images/c.svg"/></a></span>
+        <p class="sun-move">
+          <img src="images/sunrise.svg" class="medium-img" alt="sunrise" />
+          <span id="sunrise">AM</span>
+          <img src="images/sunset.svg" class="medium-img" alt="sunset" /> 
+          <span id="sundown">PM</span>
+        </p>
+      </div>
+      <div class="weather-forecast">
+        <img src="images/calendar.svg" class="small-img" alt="calendar" />
+        <span class="current-day">
+        Tuesday
+        </span>
+        <br/>
+        <img src="images/clock.svg" class="small-img" alt="clock" />
+        <span class="current-hour">
+        1:20PM 
+        </span>
+        <br/>
+        <img src="images/weather.svg" class="small-img" alt="weather" />
+        <span id="weather-desc"></span><br />
+        <img src="images/precipitation.svg" class="small-img" alt="drop" />
+        Humidity: <span id="humidity"></span>%<br />
+        <img src="images/wind.svg" class="small-img" alt="wind" />
+        Wind: <span id="windSpeed"></span>km/h
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="day1">
+          <h5>Wednesday</h5>
+          </div>
+          <br />
+          <img src="images/sun.svg" alt="sun" />
+          <p>
+            <br />
+            <strong>5°C</strong> | 2°C
+            <br />
+            Sunny
+          </p>
+        </div>
+        <div class="col">
+          <div class="day2">
+          <h5>Thursday</h5>
+          </div>
+          <br />
+          <img src="images/cloudy.svg" alt="cloudy" />
+          <p>
+            <br />
+            <strong>3°C</strong> | 0°C
+            <br />
+            Partly cloudy
+          </p>
+        </div>
+        <div class="col">
+          <div class="day3">
+          <h5>Friday</h5>
+          </div>
+          <br />
+          <img src="images/rain.svg" alt="rain" />
+          <p>
+            <br />
+            <strong>2°C</strong> | -7°C
+            <br />
+            Heavy rain
+          </p>
+        </div>
+        <div class="col">
+          <div class="day4">
+          <h5>Saturday</h5>
+          </div>
+          <br />
+          <img src="images/sun.svg" alt="sun" />
+          <p>
+            <br />
+            <strong>7°C</strong> | -2°C
+            <br />
+            Sunny
+          </p>
+        </div>
+        <div class="col">
+          <div class="day5">
+          <h5>Sunday</h5>
+          </div>
+          <br />
+          <img src="images/rainy.svg" alt="rainy" />
+          <p>
+            <br />
+            <strong>6°C</strong> | -2°C
+            <br />
+            Mostly rainy
+          </p>
+        </div>
+      </div>
+      <form class="row row-cols-lg-auto bottom-form" id="city-search">
+        <div class="col-sm search-button">
+          <input id="city-input"
+            type="text"
+            autofocus="on"
+            autocomplete="off"
+            style="width: 200px; height: 40px"
+            placeholder="type you city..."
+          />
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn down-button">
+            <img src="images/search.svg" class="small-img" alt="location" />
+            Search
+          </button>
+        </div>
+        <div class="col-12">
+          <button type="button" class="btn down-button" id="current-location">
+            <img src="images/hearts.svg" class="small-img" alt="hearts" />
+            Current city
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
