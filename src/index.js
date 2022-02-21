@@ -26,7 +26,6 @@ let currentHour = document.querySelector(".current-hour");
 currentDay.innerHTML = `${day}`;
 currentHour.innerHTML = `${hours}:${minutes}`;
 
-
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
