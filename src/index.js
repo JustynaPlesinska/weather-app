@@ -34,6 +34,7 @@ function showTemperature(response) {
   let wind = Math.round(response.data.wind.speed);
   let sunrise = new Date(response.data.sys.sunrise*1000);
   let sundown = new Date(response.data.sys.sunset*1000);
+  celsiusTemp = Math.round(response.data.main.temp);
   let searchCity = document.querySelector("#city-name");
   searchCity.innerHTML = `${city}`;
   let currentTemperature = document.querySelector("#temperature");
@@ -84,7 +85,6 @@ function searchCity(event) {
 function searchLocation(position) {
   let apiKey = "441b583c02706cbadc2a875695406721";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(showTemperature);
 }
 
@@ -93,10 +93,31 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheitDegrees = (celsiusTemp*9/5)+32;
+  let currentTemperature = document.querySelector("#temperature");
+  currentTemperature.innerHTML = Math.round(fahrenheitDegrees)+"ºF";
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#temperature");
+  currentTemperature.innerHTML = celsiusTemp+"ºC";
+}
+
+let celsiusTemp = null;
+
 let formCity = document.querySelector("#city-search");
 formCity.addEventListener("submit", searchCity);
 
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", getCurrentLocation);
+
+let fahrenheitButton = document.querySelector("#button-f");
+fahrenheitButton.addEventListener("click", showFahrenheitTemp);
+
+let celsiusButton = document.querySelector("#button-c");
+celsiusButton.addEventListener("click", showCelsiusTemp);
 
 firstPageCity("London");
