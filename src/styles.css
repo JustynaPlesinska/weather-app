@@ -24,11 +24,14 @@ h2 {
             font-weight: 100;
             opacity: 75%;
         }
-.col {
+.weather-forecast-container {
   text-align: center;
-  position: relative;
-  bottom: 100px;
-  max-width: 600px;
+}
+.weather-forecast-day {
+  text-align: center;
+}
+.weather-forecast-temperature {
+  font-weight: bold;
 }
 img {
   width: 75px;

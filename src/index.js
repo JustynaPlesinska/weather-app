@@ -26,6 +26,30 @@ let currentHour = document.querySelector(".current-hour");
 currentDay.innerHTML = `${day}`;
 currentHour.innerHTML = `${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document. querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thursday", "Friday", "Saturday"];
+  days.forEach(function(day) {
+    forecastHTML = forecastHTML +
+        `<div class="col-2">
+          <div class="weather-forecast-day">
+          <h5>${day}</h5>
+          </div>
+          <br />
+          <img class="weather-icon" src="images/01d.svg" alt="sun" />
+          <p>
+            <br />
+            <span class="weather-forecast-temperature">5°C</span> | 2°C
+            <br />
+            Sunny
+          </p>
+        </div>`;
+  });
+   forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
@@ -120,4 +144,6 @@ fahrenheitButton.addEventListener("click", showFahrenheitTemp);
 let celsiusButton = document.querySelector("#button-c");
 celsiusButton.addEventListener("click", showCelsiusTemp);
 
-firstPageCity("London");
+firstPageCity("Edinburgh");
+
+displayForecast();
