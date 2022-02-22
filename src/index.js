@@ -26,28 +26,43 @@ let currentHour = document.querySelector(".current-hour");
 currentDay.innerHTML = `${day}`;
 currentHour.innerHTML = `${hours}:${minutes}`;
 
-function displayForecast() {
+function formatDay(timestamp) {
+let date = new Date(timestamp*1000);
+let day = date.getDay();
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+return days[day];
+}
+
+function displayForecast(response) {
+  let forecastData = response.data.daily;
   let forecastElement = document. querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Thursday", "Friday", "Saturday"];
-  days.forEach(function(day) {
+  forecastData.forEach(function(forecastDay, index) {
+    if (index < 6 && index !==0) {
     forecastHTML = forecastHTML +
         `<div class="col-2">
           <div class="weather-forecast-day">
-          <h5>${day}</h5>
+          <h5>${formatDay(forecastDay.dt)}</h5>
           </div>
           <br />
-          <img class="weather-icon" src="images/01d.svg" alt="sun" />
+          <img class="weather-icon" src="images/${forecastDay.weather[0].icon}.svg" alt="sun" />
           <p>
             <br />
-            <span class="weather-forecast-temperature">5°C</span> | 2°C
+            <span class="weather-forecast-temperature">${Math.round(forecastDay.temp.max)}°C</span> | ${Math.round(forecastDay.temp.min)}°C
             <br />
-            Sunny
+            ${forecastDay.weather[0].description}
           </p>
         </div>`;
+    }
   });
    forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "441b583c02706cbadc2a875695406721";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemperature(response) {
@@ -92,6 +107,7 @@ function showTemperature(response) {
   sundownHour = `0${sundownHour}`;
   }
   sundownTime.innerHTML = `${sundownHour}:${sundownMinute} PM`;
+  getForecast(response.data.coord);
 }
 
 function firstPageCity(city) {
@@ -145,5 +161,3 @@ let celsiusButton = document.querySelector("#button-c");
 celsiusButton.addEventListener("click", showCelsiusTemp);
 
 firstPageCity("Edinburgh");
-
-displayForecast();

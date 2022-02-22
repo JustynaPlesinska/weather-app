@@ -65,6 +65,9 @@ img {
   top: -280px;
   right: -750px;
 }
+.weather-forecast-container {
+ text-transform: capitalize;
+}
 #weather-desc {
   text-transform: capitalize;
 }
