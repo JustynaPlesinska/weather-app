@@ -44,8 +44,9 @@ function showTemperature(response) {
   humid.innerHTML = `${humidity}`;
   let windSpeed = document.querySelector("#windSpeed");
   windSpeed.innerHTML = Math.round(`${wind}`*3.6);
-  let iconElement = document.querySelector("#wedather-icon");
-  iconElement.setAttribute("src", `images/${response.data.weather[0].icon}.svg`)
+  let iconElement = document.querySelector(".weather-icon");
+  iconElement.setAttribute("src", `images/${response.data.weather[0].icon}.svg`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   let sunriseTime = document.querySelector("#sunrise");
   let sunriseHour = sunrise.getHours();
   let sunriseMinute = sunrise.getMinutes();
