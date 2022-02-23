@@ -40,7 +40,7 @@ function displayForecast(response) {
   forecastData.forEach(function(forecastDay, index) {
     if (index < 6 && index !==0) {
     forecastHTML = forecastHTML +
-        `<div class="col-2">
+        `<div class="col">
           <div class="weather-forecast-day">
           <h5>${formatDay(forecastDay.dt)}</h5>
           </div>
@@ -48,9 +48,9 @@ function displayForecast(response) {
           <img class="weather-icon" src="images/${forecastDay.weather[0].icon}.svg" alt="sun" />
           <p>
             <br />
-            <span class="weather-forecast-temperature">${Math.round(forecastDay.temp.max)}°C</span> | ${Math.round(forecastDay.temp.min)}°C
+            <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}°C</span> | ${Math.round(forecastDay.temp.min)}°C
             <br />
-            ${forecastDay.weather[0].description}
+          ${forecastDay.weather[0].description}
           </p>
         </div>`;
     }
@@ -68,6 +68,7 @@ function getForecast(coordinates) {
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
+  let country = response.data.sys.country;
   let tempDescription = response.data.weather[0].description;
   let humidity = response.data.main.humidity;
   let wind = Math.round(response.data.wind.speed);
@@ -75,7 +76,7 @@ function showTemperature(response) {
   let sundown = new Date(response.data.sys.sunset*1000);
   celsiusTemp = Math.round(response.data.main.temp);
   let searchCity = document.querySelector("#city-name");
-  searchCity.innerHTML = `${city}`;
+  searchCity.innerHTML = `${city},${country}`;
   let currentTemperature = document.querySelector("#temperature");
   currentTemperature.innerHTML = `${temperature}ºC`;
   let describeWeather = document.querySelector("#weather-desc");
@@ -96,7 +97,7 @@ function showTemperature(response) {
   if (sunriseHour < 10) {
   sunriseHour = `0${sunriseHour}`;
   }
-  sunriseTime.innerHTML = `${sunriseHour}:${sunriseMinute} AM`;
+  sunriseTime.innerHTML = (`${sunriseHour}:${sunriseMinute} AM`);
   let sundownTime = document.querySelector("#sundown");
   let sundownHour = sundown.getHours();
   let sundownMinute = sundown.getMinutes();
@@ -133,31 +134,10 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  let fahrenheitDegrees = (celsiusTemp*9/5)+32;
-  let currentTemperature = document.querySelector("#temperature");
-  currentTemperature.innerHTML = Math.round(fahrenheitDegrees)+"ºF";
-}
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let currentTemperature = document.querySelector("#temperature");
-  currentTemperature.innerHTML = celsiusTemp+"ºC";
-}
-
-let celsiusTemp = null;
-
 let formCity = document.querySelector("#city-search");
 formCity.addEventListener("submit", searchCity);
 
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", getCurrentLocation);
-
-let fahrenheitButton = document.querySelector("#button-f");
-fahrenheitButton.addEventListener("click", showFahrenheitTemp);
-
-let celsiusButton = document.querySelector("#button-c");
-celsiusButton.addEventListener("click", showCelsiusTemp);
 
 firstPageCity("Edinburgh");

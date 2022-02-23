@@ -14,8 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="src/styles.css" />
   </head>
-  <body>
+  <body background="https://images.pexels.com/photos/10526896/pexels-photo-10526896.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
     <div class="container">
+      <div class="row">
+        <div class="col-6">
       <div class="current-location">
         <h1>
          <img src="images/location.svg" class="bigger-img" id="search-image" alt="location" />
@@ -28,8 +30,6 @@
         <br />
         <h2 id="temperature">
         </h2>
-        <span> <a" href="#"><img id="button-c" src="images/c.svg"/></a></span>
-        <span> <a  href="#"><img id="button-f" src="images/f.svg"/></a> </span>
         <p class="sun-move">
           <img src="images/sunrise.svg" class="medium-img" alt="sunrise" />
           <span id="sunrise">AM</span>
@@ -37,6 +37,8 @@
           <span id="sundown">PM</span>
         </p>
       </div>
+      </div>
+      <div class="col-6">
       <div class="weather-forecast">
         <img src="images/calendar.svg" class="small-img" alt="calendar" />
         <span class="current-day">
@@ -55,8 +57,10 @@
         <img src="images/wind.svg" class="small-img" alt="wind" />
         Wind: <span id="windSpeed"></span>km/h
       </div>
+      </div>
+      </div>
       <div class="weather-forecast-container" id="forecast"></div>
-      <form class="row row-cols-lg-auto bottom-form" id="city-search">
+      <form class="row row-cols-lg-auto searching-form" id="city-search">
         <div class="col-sm search-button">
           <input id="city-input"
             type="text"
@@ -67,13 +71,13 @@
           />
         </div>
         <div class="col-12">
-          <button type="submit" class="btn down-button">
+          <button type="submit" class="btn click-button">
             <img src="images/search.svg" class="small-img" alt="location" />
             Search
           </button>
         </div>
         <div class="col-12">
-          <button type="button" class="btn down-button" id="current-location">
+          <button type="button" class="btn click-button" id="current-location">
             <img src="images/hearts.svg" class="small-img" alt="hearts" />
             Current city
           </button>
